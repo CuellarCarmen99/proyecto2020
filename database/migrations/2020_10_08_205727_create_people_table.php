@@ -20,8 +20,8 @@ class CreatePeopleTable extends Migration
             $table->integer('ci');
             $table->string('telephone');
             $table->string('address');
-            $table->unsignedBigInteger('rol_id');            
-            $table->foreign('rol_id')->references('id')->on('rol');
+            $table->unsignedBigInteger('rols_id');            
+            $table->foreign('rols_id')->references('id')->on('rols');
             $table->timestamps();
         });
     }

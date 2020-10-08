@@ -17,12 +17,12 @@ class CreateBillsTable extends Migration
             $table->id();
             $table->dateTime('date');
             $table->decimal('amount');
-            $table->unsignedBigInteger('cliente_id');            
-            $table->foreign('cliente_id')->references('id')->on('persona');
-            $table->unsignedBigInteger('empleado_id');            
-            $table->foreign('empleado_id')->references('id')->on('persona');
-            $table->unsignedBigInteger('venta_id');            
-            $table->foreign('venta_id')->references('id')->on('venta');
+            $table->unsignedBigInteger('clients_id');            
+            $table->foreign('clients_id')->references('id')->on('people');
+            $table->unsignedBigInteger('employee_id');            
+            $table->foreign('employee_id')->references('id')->on('people');
+            $table->unsignedBigInteger('sales_id');            
+            $table->foreign('sales_id')->references('id')->on('sales');
 
             $table->timestamps();
         });

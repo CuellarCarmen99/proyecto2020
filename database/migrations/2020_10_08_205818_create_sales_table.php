@@ -16,10 +16,10 @@ class CreateSalesTable extends Migration
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
             $table->integer('quantity');
-            $table->unsignedBigInteger('producto_id');            
-            $table->foreign('producto_id')->references('id')->on('producto');
-            $table->unsignedBigInteger('proveedor_id');            
-            $table->foreign('proveedor_id')->references('id')->on('proveedor');
+            $table->unsignedBigInteger('products_id');            
+            $table->foreign('products_id')->references('id')->on('products');
+            $table->unsignedBigInteger('providers_id');            
+            $table->foreign('providers_id')->references('id')->on('providers');
             $table->timestamps();
         });
     }

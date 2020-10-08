@@ -19,10 +19,10 @@ class CreateProductsTable extends Migration
             $table->decimal('price');
             $table->date('expiration');
             $table->bigInteger('existence');
-            $table->unsignedBigInteger('categoria_id');            
-            $table->foreign('categoria_id')->references('id')->on('categoria');
-            $table->unsignedBigInteger('proveedor_id');            
-            $table->foreign('proveedor_id')->references('id')->on('proveedor');
+            $table->unsignedBigInteger('categories_id');            
+            $table->foreign('categories_id')->references('id')->on('categories');
+            $table->unsignedBigInteger('providers_id');            
+            $table->foreign('providers_id')->references('id')->on('providers');
 
             $table->timestamps();
         });
