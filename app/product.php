@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class product extends Model
 {
+    protected $fillable = ['name', 'price', 'expiration','existence','category_id','provider_id'];
+
     protected $table ='products';
 
         //relacion de uno a uno/
@@ -20,6 +22,11 @@ class product extends Model
     public function sales(){
 
         return $this->belongsTo('App\sale', 'sales_id');
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(product::class);
     }
    
 }
