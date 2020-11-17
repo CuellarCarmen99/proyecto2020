@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class sale extends Model
 {
+    protected $fillable = ['quantity', 'products_id', 'providers_id'];
     protected $table ='sales';
 
     //relacion de uno a muchos/one to many

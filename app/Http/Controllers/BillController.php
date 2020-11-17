@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\bill;
 
 class BillController extends Controller
 {
@@ -13,7 +14,8 @@ class BillController extends Controller
      */
     public function index()
     {
-        //
+        $bills=bill::orderBy('id','DESC')->paginate(3);
+        return view('bill.index',compact('bills'));
     }
 
     /**
@@ -23,7 +25,7 @@ class BillController extends Controller
      */
     public function create()
     {
-        //
+        return view('bill.create');
     }
 
     /**
@@ -34,7 +36,9 @@ class BillController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[ 'date'=>'required', 'amount'=>'required', 'clients_id'=>'required', 'employee_id'=>'required', 'sales_id'=>'required']);
+        Bill::create($request->all());
+        return redirect()->route('bill.index')->with('success','Record created successfully');
     }
 
     /**
@@ -56,7 +60,8 @@ class BillController extends Controller
      */
     public function edit($id)
     {
-        //
+        $bill=bill::find($id);
+        return view('bill.edit',compact('bill'));
     }
 
     /**
@@ -68,7 +73,9 @@ class BillController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[ 'date'=>'required', 'amount'=>'required', 'clients_id'=>'required', 'employee_id'=>'required', 'sales_id'=>'required']);
+        bill::find($id)->update($request->all());
+        return redirect()->route('bill.index')->with('success','Record successfully updated');
     }
 
     /**
@@ -79,6 +86,7 @@ class BillController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Bill::find($id)->delete();
+        return redirect()->route('bill.index')->with('success','Record successfully deleted');
     }
 }

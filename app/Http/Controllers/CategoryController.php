@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\category;
 
 class CategoryController extends Controller
 {
@@ -13,7 +14,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories=category::orderBy('id','DESC')->paginate(3);
+        return view('category.index',compact('categories'));
     }
 
     /**
@@ -23,7 +25,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('category.create');
     }
 
     /**
@@ -34,7 +36,9 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[ 'name'=>'required', 'description'=>'required']);
+        Category::create($request->all());
+        return redirect()->route('category.index')->with('success','Record created successfully');
     }
 
     /**
@@ -56,7 +60,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category=category::find($id);
+        return view('category.edit',compact('category'));
     }
 
     /**
@@ -68,7 +73,9 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[ 'name'=>'required', 'description'=>'required']);
+        category::find($id)->update($request->all());
+        return redirect()->route('category.index')->with('success','Record successfully updated');
     }
 
     /**
@@ -79,6 +86,7 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Category::find($id)->delete();
+        return redirect()->route('category.index')->with('success','Record successfully deleted');
     }
 }

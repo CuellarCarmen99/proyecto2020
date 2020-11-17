@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\rol;
 
 class RolController extends Controller
 {
@@ -13,7 +14,8 @@ class RolController extends Controller
      */
     public function index()
     {
-        //
+        $rols=rol::orderBy('id','DESC')->paginate(3);
+        return view('rol.index',compact('rols'));
     }
 
     /**
@@ -23,7 +25,7 @@ class RolController extends Controller
      */
     public function create()
     {
-        //
+        return view('rol.create');
     }
 
     /**
@@ -34,7 +36,9 @@ class RolController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[ 'name'=>'required']);
+        Rol::create($request->all());
+        return redirect()->route('rol.index')->with('success','Record created successfully');
     }
 
     /**
@@ -56,7 +60,8 @@ class RolController extends Controller
      */
     public function edit($id)
     {
-        //
+        $rol=rol::find($id);
+        return view('rol.edit',compact('rol'));
     }
 
     /**
@@ -68,7 +73,9 @@ class RolController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[ 'name'=>'required']);
+        rol::find($id)->update($request->all());
+        return redirect()->route('rol.index')->with('success','Record successfully updated');
     }
 
     /**
@@ -79,6 +86,7 @@ class RolController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Rol::find($id)->delete();
+        return redirect()->route('rol.index')->with('success','Record successfully deleted');
     }
 }

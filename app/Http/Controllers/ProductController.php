@@ -38,7 +38,7 @@ class ProductController extends Controller
     {
         $this->validate($request,[ 'name'=>'required', 'price'=>'required', 'expiration'=>'required', 'existence'=>'required', 'categories_id'=>'required', 'providers_id'=>'required']);
         Product::create($request->all());
-        return redirect()->route('product.index')->with('success','Registro creado satisfactoriamente');
+        return redirect()->route('product.index')->with('success','Record created successfully');
     }
 
     /**
@@ -49,8 +49,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $product=Product::find($id);
-        return  view('product.show',compact('product'));
+       
     }
 
     /**
@@ -76,7 +75,7 @@ class ProductController extends Controller
     {
         $this->validate($request,[ 'name'=>'required', 'price'=>'required', 'expiration'=>'required', 'existence'=>'required', 'categories_id'=>'required', 'providers_id'=>'required']);
         product::find($id)->update($request->all());
-        return redirect()->route('product.index')->with('success','Registro actualizado satisfactoriamente');
+        return redirect()->route('product.index')->with('success','Record successfully updated');
     }
 
     /**
@@ -88,6 +87,6 @@ class ProductController extends Controller
     public function destroy($id)
     {
         Product::find($id)->delete();
-        return redirect()->route('product.index')->with('success','Registro eliminado satisfactoriamente');
+        return redirect()->route('product.index')->with('success','Record successfully deleted');
     }
 }

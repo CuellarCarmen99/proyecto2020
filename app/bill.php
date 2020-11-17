@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class bill extends Model
 {
+    protected $fillable = ['date', 'amount', 'clients_id', 'employee_id', 'sales_id'];
     protected $table ='bills';
 
     //uno a uno

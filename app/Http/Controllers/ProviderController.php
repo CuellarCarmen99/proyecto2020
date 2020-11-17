@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\provider;
 
 class ProviderController extends Controller
 {
@@ -13,7 +14,8 @@ class ProviderController extends Controller
      */
     public function index()
     {
-        //
+        $providers=provider::orderBy('id','DESC')->paginate(3);
+        return view('provider.index',compact('providers'));
     }
 
     /**
@@ -23,7 +25,7 @@ class ProviderController extends Controller
      */
     public function create()
     {
-        //
+        return view('provider.create');
     }
 
     /**
@@ -34,7 +36,9 @@ class ProviderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[ 'name'=>'required', 'telephone'=>'required', 'address'=>'required', 'web_site'=>'required']);
+        Provider::create($request->all());
+        return redirect()->route('provider.index')->with('success','Record created successfully');
     }
 
     /**
@@ -56,7 +60,8 @@ class ProviderController extends Controller
      */
     public function edit($id)
     {
-        //
+        $provider=provider::find($id);
+        return view('provider.edit',compact('provider'));
     }
 
     /**
@@ -68,7 +73,9 @@ class ProviderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[ 'name'=>'required', 'telephone'=>'required', 'address'=>'required', 'web_site'=>'required']);
+        provider::find($id)->update($request->all());
+        return redirect()->route('provider.index')->with('success','Record successfully updated');
     }
 
     /**
@@ -79,6 +86,7 @@ class ProviderController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Provider::find($id)->delete();
+        return redirect()->route('provider.index')->with('success','Record successfully deleted');
     }
 }

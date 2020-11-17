@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class provider extends Model
 {
+    protected $fillable = ['name', 'telephone', 'address','web_site'];
     protected $table ='providers';
 
     //relacion uno a muchos/one to many

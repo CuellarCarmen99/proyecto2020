@@ -5,35 +5,29 @@
     <div class="col-md-8 col-md-offset-2">
       <div class="panel panel-default">
         <div class="panel-body">
-          <div class="pull-left"><h3>List of products</h3></div>
+          <div class="pull-left"><h3>Sales List</h3></div>
           <div class="pull-right">
             <div class="btn-group">
-              <a href="{{ route('product.create') }}" class="btn btn-info" >Add product</a>
+              <a href="{{ route('sale.create') }}" class="btn btn-info" >Add Sale</a>
             </div>
           </div>
           <div class="table-container">
             <table id="mytable" class="table table-bordred table-striped">
              <thead>
-               <th>Name</th>
-               <th>Price</th>
-               <th>Expiration</th>
-               <th>Existence</th>
-               <th>Category</th>
+               <th>Quantity</th>
+               <th>Product</th>
                <th>Provider</th>
              </thead>
              <tbody>
-              @if($products->count())  
-              @foreach($products as $product)  
+              @if($sales->count())  
+              @foreach($sales as $sale)  
               <tr>
-                <td>{{$product->name}}</td>
-                <td>{{$product->price}}</td>
-                <td>{{$product->expiration}}</td>
-                <td>{{$product->existence}}</td>
-                <td>{{$product->categories_id}}</td>
-                <td>{{$product->providers_id}}</td>
-                <td><a class="btn btn-primary btn-xs" href="{{action('ProductController@edit', $product->id)}}" ><span class="glyphicon glyphicon-pencil"></span></a></td>
+                <td>{{$sale->quantity}}</td>
+                <td>{{$sale->products_id}}</td>
+                <td>{{$sale->providers_id}}</td>
+                <td><a class="btn btn-primary btn-xs" href="{{action('SaleController@edit', $sale->id)}}" ><span class="glyphicon glyphicon-pencil"></span></a></td>
                 <td>
-                  <form action="{{action('ProductController@destroy', $product->id)}}" method="post">
+                  <form action="{{action('SaleController@destroy', $sale->id)}}" method="post">
                    {{csrf_field()}}
                    <input name="_method" type="hidden" value="DELETE">
 
@@ -51,7 +45,7 @@
           </table>
         </div>
       </div>
-      {{ $products->links() }}
+      {{ $sales->links() }}
     </div>
   </div>
 </section>

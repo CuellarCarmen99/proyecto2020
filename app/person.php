@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class person extends Model
 {
-    protected $table ='people';
+    protected $fillable = ['name', 'lastname', 'ci','telephone','address','rols_id'];
+    
+    protected $table =['people'];
 
     //relacion de uno a muchos
     public function bills(){

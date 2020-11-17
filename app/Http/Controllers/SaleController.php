@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\sale;
 class SaleController extends Controller
 {
     /**
@@ -13,7 +13,8 @@ class SaleController extends Controller
      */
     public function index()
     {
-        //
+        $sales=sale::orderBy('id','DESC')->paginate(3);
+        return view('sale.index',compact('sales'));
     }
 
     /**
@@ -23,7 +24,7 @@ class SaleController extends Controller
      */
     public function create()
     {
-        //
+        return view('sale.create');
     }
 
     /**
@@ -34,7 +35,9 @@ class SaleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[ 'quantity'=>'required', 'products_id'=>'required', 'providers_id'=>'required']);
+        Sale::create($request->all());
+        return redirect()->route('sale.index')->with('success','Record created successfully');
     }
 
     /**
@@ -45,7 +48,7 @@ class SaleController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -56,7 +59,8 @@ class SaleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $sale=sale::find($id);
+        return view('sale.edit',compact('sale'));
     }
 
     /**
@@ -68,7 +72,9 @@ class SaleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[ 'quantity'=>'required', 'products_id'=>'required', 'providers_id'=>'required']);
+        sale::find($id)->update($request->all());
+        return redirect()->route('sale.index')->with('success','Record successfully updated');
     }
 
     /**
@@ -79,6 +85,7 @@ class SaleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Sale::find($id)->delete();
+        return redirect()->route('sale.index')->with('success','Record successfully deleted');
     }
 }

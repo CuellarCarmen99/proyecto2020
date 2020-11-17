@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\person;
 
 class PersonController extends Controller
 {
@@ -13,7 +14,8 @@ class PersonController extends Controller
      */
     public function index()
     {
-        //
+        $people=person::orderBy('id','DESC')->paginate(3);
+        return view('person.index',compact('people'));
     }
 
     /**
@@ -23,7 +25,7 @@ class PersonController extends Controller
      */
     public function create()
     {
-        //
+        return view('person.create');
     }
 
     /**
@@ -34,7 +36,9 @@ class PersonController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[ 'name'=>'required', 'lastname'=>'required', 'ci'=>'required', 'telephone'=>'required', 'address'=>'required', 'rols_id'=>'required']);
+        Person::create($request->all());
+        return redirect()->route('person.index')->with('success','Record created successfully');
     }
 
     /**
@@ -56,7 +60,8 @@ class PersonController extends Controller
      */
     public function edit($id)
     {
-        //
+        $person=person::find($id);
+        return view('person.edit',compact('person'));
     }
 
     /**
@@ -68,7 +73,9 @@ class PersonController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[ 'name'=>'required', 'last name'=>'required', 'ci'=>'required', 'telephone'=>'required', 'address'=>'required', 'rols_id'=>'required']);
+        person::find($id)->update($request->all());
+        return redirect()->route('person.index')->with('success','Record successfully updated');
     }
 
     /**
@@ -79,6 +86,7 @@ class PersonController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Person::find($id)->delete();
+        return redirect()->route('person.index')->with('success','Record successfully deleted');
     }
 }
