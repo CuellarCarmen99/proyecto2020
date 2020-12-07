@@ -8,7 +8,7 @@
           <div class="pull-left"><h3>List of people</h3></div>
           <div class="pull-right">
             <div class="btn-group">
-              <a href="{{ route('person.create') }}" class="btn btn-info" >Add person</a>
+              <a href="{{ route('individual.create') }}" class="btn btn-info" >Add person</a>
             </div>
           </div>
           <div class="table-container">
@@ -16,24 +16,24 @@
              <thead>
                <th>Name</th>
                <th>Last Name</th>
-               <th>CI</th>
+               <th>C.I.</th>
                <th>Telephone</th>
                <th>Address</th>
                <th>Rol</th>
              </thead>
              <tbody>
-              @if($people->count())  
-              @foreach($people as $person)  
+              @if($individuals->count())  
+              @foreach($individuals as $individual)  
               <tr>
-                <td>{{$person->name}}</td>
-                <td>{{$person->lastname}}</td>
-                <td>{{$person->ci}}</td>
-                <td>{{$person->telephone}}</td>
-                <td>{{$person->address}}</td>
-                <td>{{$person->rols_id}}</td>
-                <td><a class="btn btn-primary btn-xs" href="{{action('PersonController@edit', $person->id)}}" ><span class="glyphicon glyphicon-pencil"></span></a></td>
+                <td>{{$individual->name}}</td>
+                <td>{{$individual->lastname}}</td>
+                <td>{{$individual->ci}}</td>
+                <td>{{$individual->telephone}}</td>
+                <td>{{$individual->address}}</td>
+                <td>{{$individual->rols_id}}</td>
+                <td><a class="btn btn-primary btn-xs" href="{{action('IndividualController@edit', $individual->id)}}" ><span class="glyphicon glyphicon-pencil"></span></a></td>
                 <td>
-                  <form action="{{action('PersonController@destroy', $person->id)}}" method="post">
+                  <form action="{{action('IndividualController@destroy', $individual->id)}}" method="post">
                    {{csrf_field()}}
                    <input name="_method" type="hidden" value="DELETE">
 
@@ -51,7 +51,7 @@
           </table>
         </div>
       </div>
-      {{ $people->links() }}
+      {{ $individuals->links() }}
     </div>
   </div>
 </section>

@@ -29,8 +29,19 @@
                 <td>{{$product->price}}</td>
                 <td>{{$product->expiration}}</td>
                 <td>{{$product->existence}}</td>
-                <td>{{$product->categories_id}}</td>
-                <td>{{$product->providers_id}}</td>
+
+                @foreach($categories as $category)
+                    @if($product->categories_id == $category->id)
+                    <td>{{$category->name}}</td>
+                    @endif
+                    @endforeach
+
+                    @foreach($providers as $provider)
+                    @if($product->providers_id == $provider->id)
+                    <td>{{$provider->name}}</td>
+                    @endif
+                    @endforeach
+
                 <td><a class="btn btn-primary btn-xs" href="{{action('ProductController@edit', $product->id)}}" ><span class="glyphicon glyphicon-pencil"></span></a></td>
                 <td>
                   <form action="{{action('ProductController@destroy', $product->id)}}" method="post">
@@ -46,6 +57,8 @@
                 <td colspan="8">There is no record !!</td>
               </tr>
               @endif
+
+              
             </tbody>
 
           </table>

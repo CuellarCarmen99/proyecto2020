@@ -25,29 +25,29 @@
 				</div>
 				<div class="panel-body">					
 					<div class="table-container">
-						<form method="POST" action="{{ route('person.store') }}"  role="form">
+						<form method="POST" action="{{ route('individual.store') }}"  role="form">
 							{{ csrf_field() }}
 							<div class="row">
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
-										<input type="text" name="name" id="name" class="form-control input-sm" placeholder="Name">
+										<input type="text" name="name" id="name" class="form-control input-sm" placeholder="Name of person">
 									</div>
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
-										<input type="text" name="lastname" id="lastname" class="form-control input-sm" placeholder="Last Name">
+										<input type="text" name="lastname" id="lastname" class="form-control input-sm" placeholder="Surname of the person">
 									</div>
 								</div>
 							</div>
                             <div class="row">
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
-										<input type="text" name="ci" id="ci" class="form-control input-sm" placeholder="CI">
+										<input type="text" name="ci" id="ci" class="form-control input-sm" placeholder="C.I. of the person">
 									</div>
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
-										<input type="text" name="telephone" id="telephone" class="form-control input-sm" placeholder="Telephone">
+										<input type="text" name="telephone" id="telephone" class="form-control input-sm" placeholder="Cell phone number">
 									</div>
 								</div>
 							</div>
@@ -69,7 +69,7 @@
  
 								<div class="col-xs-12 col-sm-12 col-md-12">
 									<input type="submit"  value="Save" class="btn btn-success btn-block">
-									<a href="{{ route('person.index') }}" class="btn btn-info btn-block" >Back</a>
+									<a href="{{ route('individual.index') }}" class="btn btn-info btn-block" >Back</a>
 								</div>	
  
 							</div>

@@ -10,11 +10,18 @@ class product extends Model
 
     protected $table ='products';
 
+    public function category(){
+        return $this->belongsTo(category::class);
+    }
+    public function provider(){
+        return $this->belongsTo(provider::class);
+    }
+
         //relacion de uno a uno/
-    public function categories(){
+    /*public function categories(){
 
         return $this->belongsTo('App\category', 'categories_id');
-    }
+    }*/
     public function providers(){
 
         return $this->belongsTo('App\provider', 'providers_id');
@@ -30,3 +37,6 @@ class product extends Model
     }
    
 }
+
+
+

@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\person;
+use App\individual;
 
-class PersonController extends Controller
+class IndividualController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class PersonController extends Controller
      */
     public function index()
     {
-        $people=person::orderBy('id','DESC')->paginate(3);
-        return view('person.index',compact('people'));
+        $individuals=individual::orderBy('id','DESC')->paginate(3);
+        return view('individual.index',compact('individuals'));
     }
 
     /**
@@ -25,7 +25,7 @@ class PersonController extends Controller
      */
     public function create()
     {
-        return view('person.create');
+        return view('individual.create');
     }
 
     /**
@@ -37,8 +37,8 @@ class PersonController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[ 'name'=>'required', 'lastname'=>'required', 'ci'=>'required', 'telephone'=>'required', 'address'=>'required', 'rols_id'=>'required']);
-        Person::create($request->all());
-        return redirect()->route('person.index')->with('success','Record created successfully');
+        Individual::create($request->all());
+        return redirect()->route('individual.index')->with('success','Record created successfully');
     }
 
     /**
@@ -49,7 +49,7 @@ class PersonController extends Controller
      */
     public function show($id)
     {
-        //
+       
     }
 
     /**
@@ -60,8 +60,8 @@ class PersonController extends Controller
      */
     public function edit($id)
     {
-        $person=person::find($id);
-        return view('person.edit',compact('person'));
+        $individual=individual::find($id);
+        return view('individual.edit',compact('individual'));
     }
 
     /**
@@ -73,9 +73,9 @@ class PersonController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request,[ 'name'=>'required', 'last name'=>'required', 'ci'=>'required', 'telephone'=>'required', 'address'=>'required', 'rols_id'=>'required']);
-        person::find($id)->update($request->all());
-        return redirect()->route('person.index')->with('success','Record successfully updated');
+        $this->validate($request,[ 'name'=>'required', 'lastname'=>'required', 'ci'=>'required', 'telephone'=>'required', 'address'=>'required', 'rols_id'=>'required']);
+        individual::find($id)->update($request->all());
+        return redirect()->route('individual.index')->with('success','Record successfully updated');
     }
 
     /**
@@ -86,7 +86,7 @@ class PersonController extends Controller
      */
     public function destroy($id)
     {
-        Person::find($id)->delete();
-        return redirect()->route('person.index')->with('success','Record successfully deleted');
+        Individual::find($id)->delete();
+        return redirect()->route('individual.index')->with('success','Record successfully deleted');
     }
 }

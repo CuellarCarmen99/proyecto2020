@@ -54,13 +54,23 @@
 							
 							<div class="row">
 								<div class="col-xs-6 col-sm-6 col-md-6">
-									<div class="form-group">
-										<input type="text" name="categories_id" id="categories_id" class="form-control input-sm" placeholder="Product Category">
-									</div>
+									
+									<select name="categories_id" id="categories_id" class="form-group">
+									@foreach ($categories as $category)
+										<option value=" {{ $category->id}} ">{{ $category->name }}</option>
+									@endforeach
+									</select>
+
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
-										<input type="text" name="providers_id" id="providers_id" class="form-control input-sm" placeholder="Product supplier">
+
+									<select name="providers_id" id="providers_id" class="form-group">
+									@foreach ($providers as $provider)
+										<option value=" {{ $provider->id}} ">{{ $provider->name }}</option>
+									@endforeach
+									</select>
+
 									</div>
 								</div>
 							</div>

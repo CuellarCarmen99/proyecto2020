@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\product;
+use App\category;
+use App\provider;
 
 class ProductController extends Controller
 {
@@ -14,8 +16,10 @@ class ProductController extends Controller
      */
     public function index()
     {
+        $categories=category::orderBy('id','DESC')->paginate(3);;
+        $providers=provider::orderBy('id','DESC')->paginate(3);;
         $products=product::orderBy('id','DESC')->paginate(3);
-        return view('product.index',compact('products'));
+        return view('product.index',compact('products','categories', 'providers'));
     }
 
     /**
@@ -25,7 +29,10 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('product.create');
+        $categories=category::get();
+        $providers=provider::get();
+        return view('product.create', compact('categories','providers'));
+        
     }
 
     /**

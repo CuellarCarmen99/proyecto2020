@@ -23,6 +23,10 @@ Route::resource('product', 'ProductController');
 Route::resource('sale', 'SaleController');
 Route::resource('rol', 'RolController');
 Route::resource('provider', 'ProviderController');
-Route::resource('person', 'PersonController');
+
 Route::resource('category', 'CategoryController');
+Route::resource('individual', 'IndividualController');
 Route::resource('bill', 'BillController');
+
+
+

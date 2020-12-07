@@ -4,11 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class person extends Model
+class individual extends Model
 {
     protected $fillable = ['name', 'lastname', 'ci','telephone','address','rols_id'];
-    
-    protected $table =['people'];
+    protected $table =['individuals'];
 
     //relacion de uno a muchos
     public function bills(){
